@@ -1,3 +1,3 @@
 # api
 
-Api hébergé sur vercel
+Api hébergée sur Vercel
