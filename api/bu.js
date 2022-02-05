@@ -15,7 +15,7 @@ Date.prototype.yyyymmdd = function() {
 
 async function parse(url){
     var req = await request(url)
-
+    console.log(2)
     const dom = new jsdom.JSDOM(req);
     const document = dom.window.document
     var lis2 = document.querySelectorAll("tr")
@@ -44,5 +44,6 @@ module.exports = async function (req, res) {
     time=Date.now()
     var date = new Date(time);
     var url = "https://univ-rennes1.libcal.com/widget/hours/grid?systemTime=1&date="+date.yyyymmdd()
+    console.log(1)
     return await parse(url)
 }
