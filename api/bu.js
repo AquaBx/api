@@ -15,15 +15,10 @@ Date.prototype.yyyymmdd = function() {
 
 async function parse(url){
     var req = await request(url)
-    
+    console.log(req)
     const dom = new jsdom.JSDOM(req);
-    console.log(1)
     const document = dom.window.document
-    console.log(2)
     var lis2 = document.querySelectorAll("tr")
-    console.log(3)
-    console.log(lis2)
-    console.log(4)
     var liste2 = []
     for (var tr of lis2) {
         var nlist = []
@@ -41,6 +36,7 @@ async function parse(url){
       liste2.push(nlist)
     }
     liste2[0][0] = "Jours"
+    console.log(liste2)
     return liste2
 }
 
