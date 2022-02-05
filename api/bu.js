@@ -41,7 +41,7 @@ async function parse(url){
 }
 
 module.exports = async function (req, res) {
-    time=Date.now()
+    var time=Date.now()
     var date = new Date(time);
     var url = "https://univ-rennes1.libcal.com/widget/hours/grid?systemTime=1&date="+date.yyyymmdd()
     console.log(1)
