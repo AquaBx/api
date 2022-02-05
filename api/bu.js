@@ -15,7 +15,6 @@ Date.prototype.yyyymmdd = function() {
 
 async function parse(url){
     var req = await request(url)
-    console.log(req)
     const dom = new jsdom.JSDOM(req);
     const document = dom.window.document
     var lis2 = document.querySelectorAll("tr")
@@ -36,7 +35,6 @@ async function parse(url){
       liste2.push(nlist)
     }
     liste2[0][0] = "Jours"
-    console.log(liste2)
     return liste2
 }
 
@@ -44,5 +42,11 @@ module.exports = async function (req, res) {
     var time=Date.now()
     var date = new Date(time);
     var url = "https://univ-rennes1.libcal.com/widget/hours/grid?systemTime=1&date="+date.yyyymmdd()
-    return await parse(url)
+    var result = await parse(url)
+    try{
+      res.status(200).json(result);
+    } 
+    catch (error) {
+      return res.status(200).json(error);
+    }
 }
