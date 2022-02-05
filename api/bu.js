@@ -10,7 +10,7 @@ Date.prototype.yyyymmdd = function() {
   var mm = this.getMonth() + 1; // getMonth() is zero-based
   var hh = this.getHours()
   var dd = (hh>20 ? 1 : 0) + this.getDate();        
-  return [this.getFullYear(), (mm>9 ? '' : '0') + mm, (dd>9 ? '' : '0') + dd].join('-');
+  return [this.getFullYear().toString(), (mm>9 ? '' : '0') + mm.toString(), (dd>9 ? '' : '0') + dd.toString()].join('-');
 };
 
 async function parse(url){
@@ -39,11 +39,16 @@ async function parse(url){
 }
 
 module.exports = async function (req, res) {
-    var time=Date.now()
-    var date = new Date(time);
-    var url = "https://univ-rennes1.libcal.com/widget/hours/grid?systemTime=1&date="+date.yyyymmdd()
-    var result = await parse(url)
+    let date
+    if (req.query.date){
+      //let time = req.query.date
+      //date = (new Date(time)).yyyymmdd();
+      date = req.query.date
+    }
+    
+    var url = "https://univ-rennes1.libcal.com/widget/hours/grid?systemTime=1&date="+date
     try{
+      var result = await parse(url)
       res.status(200).json(result);
     } 
     catch (error) {
