@@ -193,10 +193,14 @@ module.exports = async function (req, res) {
   }
 
   try {
-    let salle = req.query.salle
-    let result = await salleLibres(salle,date);
+    let salles = JSON.parse(req.query.salles)
+    let resp = {}
+    for (let key of salles){
+        let result = await salleLibres(key,date);
+        resp[key] = result
+    }    
 
-    return res.status(200).json(result);
+    return res.status(200).json(resp);
   } 
   catch (error) {
     return res.status(200).json(error);
