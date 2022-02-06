@@ -189,28 +189,26 @@ exports.salles_names = name
 module.exports = async function (req, res) {
   let date = Date.now()
   if (req.query.time){
-    date = req.query.time
+    date = req.query.datimete
   }
 
   try {
     let salles = JSON.parse(req.query.salles)
     let resp = {}
-    for (let key of salles){    
-        if (req.query.type == "events"){
-            console.log(req.query.type,1)
-            let result = await salleEvents(key,date)
+    if (req.query.type == "events"){
+        for (let key of salles){
+            let result = await salleEvents(key,date);
+            resp[key] = result
         }
-        else if (req.query.type == "libres"){
-            console.log(req.query.type,2)
+    }
+    else if (req.query.type == "libres"){
+        for (let key of salles){
             let result = await salleLibres(key,date);
+            resp[key] = result
         }
-        else{
-            console.log(req.query.type,3)
-            return res.status(200).json(error);
-        }
-
-        resp[key] = result
-    }    
+    }
+    else{
+    }  
 
     return res.status(200).json(resp);
   } 
