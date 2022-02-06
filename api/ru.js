@@ -34,12 +34,12 @@ async function parse(url){
 }
 
 module.exports = async function (req, res) {
-    try{
+    //try{
       var url = "https://www.crous-rennes.fr/restaurant/resto-u-"+req.query.q
       var result = await parse(url)
       res.status(200).json(result);
-    } 
-    catch (error) {
-      return res.status(200).json(error);
-    }
+    //} 
+    //catch (error) {
+    //  return res.status(200).json(error);
+    //}
 }
