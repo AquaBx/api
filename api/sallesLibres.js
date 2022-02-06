@@ -194,19 +194,7 @@ module.exports = async function (req, res) {
 
   try {
     let salle = req.query.salle
-    var url = link[salle]
-    var cal = await get_cal(url);
-    var req = dichotomie(cal,date,0,cal.length)
-    var state = req[0]    
-    var i = req[1]
-    
-    if (state){
-        var jusque = cal[i]["DTSTART"]
-    }
-    else{
-        var jusque = cal[i]["DTEND"]
-    }
-    let result = {"state":state,"until":to_date(jusque)}
+    let result = await salleLibres(salle,date);
 
     return res.status(200).json(result);
   } 
