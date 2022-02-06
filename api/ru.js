@@ -32,8 +32,8 @@ async function parse(url){
           let div = tr.querySelectorAll(".content > div")          
           
           for (let content of div){
-            let h4 = content.querySelectorAll("h4").textContent
-            let menu = content.querySelectorAll(".content-repas").textContent
+            let h4 = content.querySelectorAll("h4")[0].textContent
+            let menu = content.querySelectorAll(".content-repas")[0].textContent
 
             nlist[h4] = menu
           }
