@@ -6,7 +6,7 @@ async function request(url){
   return resp.data;
 };
 
-async function scrap(url){
+async function parse(url){
   var req = await request(url)
   const dom = new jsdom.JSDOM(req);
   const document = dom.window.document
