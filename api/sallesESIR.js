@@ -189,14 +189,24 @@ exports.salles_names = name
 module.exports = async function (req, res) {
   let date = Date.now()
   if (req.query.time){
-    date = req.query.datimete
+    date = req.query.time
   }
 
   try {
     let salles = JSON.parse(req.query.salles)
     let resp = {}
     for (let key of salles){
-        let result = await salleLibres(key,date);
+        
+        if (req.query.type == "events"){
+            let result = await salleEvents(key,date)
+        }
+        else if (req.query.type == "libres"){
+            let result = await salleLibres(key,date);
+        }
+        else{
+            return res.status(200).json(error);
+        }
+
         resp[key] = result
     }    
 
