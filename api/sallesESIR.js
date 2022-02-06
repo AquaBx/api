@@ -195,17 +195,17 @@ module.exports = async function (req, res) {
   try {
     let salles = JSON.parse(req.query.salles)
     let resp = {}
-    for (let key of salles){
-
-        console.log(req.query.type)
-        
+    for (let key of salles){    
         if (req.query.type == "events"){
+            console.log(req.query.type,1)
             let result = await salleEvents(key,date)
         }
         else if (req.query.type == "libres"){
+            console.log(req.query.type,2)
             let result = await salleLibres(key,date);
         }
         else{
+            console.log(req.query.type,3)
             return res.status(200).json(error);
         }
 
