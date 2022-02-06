@@ -6,6 +6,14 @@ async function request(url){
   return resp.data;
 };
 
+function parse_date(str){
+  str = str.split(" ")
+  let mois = {"janvier":"01","février":"02","mars":"03","avril":"04","mai":"05","juin":"06","juillet":"07","août":"08","septembre":"09","octobre":"10","novembre":"11","décembre":"12"}
+  return Date.parse(str[1] + "/" + mois[str[2]] + "/" + str[3])
+
+}
+
+
 async function parse(url){
   var req = await request(url)
   const dom = new jsdom.JSDOM(req);
@@ -16,12 +24,12 @@ async function parse(url){
   let liste2 = []
   for (let tr of lis2) {
       let nlist = []
-      
       var title = tr.querySelectorAll("h3")[0].textContent.split("Menu du ")[1]
-      console.log(title)
-      var date = new Date(title)
+      var date = parse_date(title)
       var datenow = Date.now()
+
       console.log(date,datenow)
+      
       if(date.getTime()+72900000 > datenow){
           nlist.push(title)
           let div = tr.querySelectorAll(".content > div")
