@@ -16,8 +16,8 @@ async function parse(url){
   let liste2 = []
   for (let tr of lis2) {
       let nlist = []
-
-      var title = tr.querySelectorAll("h3")[0].innerText.split("Menu du ")[1]
+      console.log(tr)
+      var title = tr.querySelectorAll("h3")[0].textContent.split("Menu du ")[1]
       var date = new Date(title)
       var datenow = Date.now()
       if(date.getTime()+72900000 > datenow){
