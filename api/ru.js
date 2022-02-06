@@ -21,17 +21,21 @@ async function parse(url){
 
   let liste2 = []
   for (let tr of lis2) {
-      let nlist = []
+      let nlist = {}
       var title = tr.querySelectorAll("h3")[0].textContent.split("Menu du ")[1]
       var date = parse_date(title)
       var datenow = Date.now()
 
       if(date+72900000 > datenow){
-          nlist.push(title)
-          let div = tr.querySelectorAll(".content > div")
+          nlist["date"] = title
 
+          let div = tr.querySelectorAll(".content > div")          
+          
           for (let content of div){
-              nlist.push(content.innerHTML)
+            let h4 = content.querySelectorAll("h4").textContent
+            let menu = content.querySelectorAll(".content-repas").textContent
+
+            nlist[h4] = menu
           }
           liste2.push(nlist)
       }
@@ -40,12 +44,12 @@ async function parse(url){
 }
 
 module.exports = async function (req, res) {
-    //try{
+    try{
       var url = "https://www.crous-rennes.fr/restaurant/resto-u-"+req.query.q
       var result = await parse(url)
       res.status(200).json(result);
-    //} 
-    //catch (error) {
-    //  return res.status(200).json(error);
-    //}
+    } 
+    catch (error) {
+      return res.status(200).json(error);
+    }
 }
