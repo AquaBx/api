@@ -196,6 +196,8 @@ module.exports = async function (req, res) {
     let salles = JSON.parse(req.query.salles)
     let resp = {}
     for (let key of salles){
+
+        console.log(req.query.type)
         
         if (req.query.type == "events"){
             let result = await salleEvents(key,date)
