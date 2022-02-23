@@ -26,7 +26,7 @@ async function parse(url){
       var date = parse_date(title)
       var datenow = Date.now()
       console.log(tr.innerText)
-      if(date > datenow){
+      //if(date > datenow){
           nlist["date"] = title
 
           let div = tr.querySelectorAll(".content > div")          
@@ -38,7 +38,7 @@ async function parse(url){
             nlist[h4] = menu
           }
           liste2.push(nlist)
-      }
+      //}
   }
   return liste2
 }
