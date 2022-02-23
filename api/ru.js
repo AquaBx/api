@@ -26,7 +26,7 @@ async function parse(url){
       var date = parse_date(title)
       var datenow = Date.now()
 
-      if(date+72900000 > datenow){
+      if(date > datenow){
           nlist["date"] = title
 
           let div = tr.querySelectorAll(".content > div")          
