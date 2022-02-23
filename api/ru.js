@@ -18,14 +18,14 @@ async function parse(url){
   const document = dom.window.document
 
   let lis2 = document.querySelectorAll("#menu-repas .slides > li")
-
+  console.log(lis2)
   let liste2 = []
   for (let tr of lis2) {
       let nlist = {}
       var title = tr.querySelectorAll("h3")[0].textContent.split("Menu du ")[1]
       var date = parse_date(title)
       var datenow = Date.now()
-
+      console.log(tr.innerText)
       if(date > datenow){
           nlist["date"] = title
 
