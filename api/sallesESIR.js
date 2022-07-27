@@ -16,16 +16,15 @@ module.exports = async function (req, res) {
     }
 
   try {
-    console.log(req.query.type)
-    console.log(req.query.salles)
-    
     let salles = JSON.parse(req.query.salles)
     let resp = {}
     
-    console.log(salles)
     if (req.query.type == "events"){
         for (let salle of salles){
+            console.log(1)
+            console.log(salle)
             let key = all_salles[salle]
+            console.log(key)
           
             let result = await esir.salleEvents(key,date);
             resp[key] = result
