@@ -16,11 +16,12 @@ module.exports = async function (req, res) {
     }
 
   try {
+    console.log(req.query.type)
+    console.log(req.query.salles)
     
     let salles = JSON.parse(req.query.salles)
     let resp = {}
-    console.log(req.query.type)
-    console.log(req.query.salles)
+    
     console.log(salles)
     if (req.query.type == "events"){
         for (let salle of salles){
