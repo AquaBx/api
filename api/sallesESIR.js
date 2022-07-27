@@ -4,8 +4,11 @@ const axios = require('axios');
 
 async function request(url){
   let resp = await axios.get(url);
+  console.log(resp)
   resp = await resp.data
+  console.log(resp)
   resp = await JSON.parse(resp)
+  console.log(resp)
   return resp;
 };
 
