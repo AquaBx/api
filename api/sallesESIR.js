@@ -1,23 +1,31 @@
 let esir = require("./libs/sallesESIR.js")
 
 module.exports = async function (req, res) {
+  let req = await fetch("https://cdn.jsdelivr.net/gh/AquaBx/salles_esir@latest/salles/data.json")
+  let all_salles = await req.json()
+  
+  
   let date = Date.now()
   if (req.query.time){
       date = req.query.datimete
   }
 
   try {
-    let req = await fetch("https://cdn.jsdelivr.net/gh/AquaBx/salles_esir@latest/salles/data.json")
-    let salles = await req.json()
+    
+    let salles = JSON.parse(req.query.salles)
     let resp = {}
     if (req.query.type == "events"){
-        for (let key of salles){
+        for (let salle of salles){
+            let key = all_salles[salle]
+          
             let result = await esir.salleEvents(key,date);
             resp[key] = result
         }
     }
     else if (req.query.type == "libres"){
-        for (let key of salles){
+        for (let salle of salles){
+            let key = all_salles[salle]
+            
             let result = await esir.salleLibres(key,date);
             resp[key] = result
         }
