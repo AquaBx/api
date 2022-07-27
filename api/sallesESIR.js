@@ -8,6 +8,8 @@ async function request(url){
 };
 
 module.exports = async function (req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*')
+  
     let all_salles = await request("https://cdn.jsdelivr.net/gh/AquaBx/salles_esir@latest/salles/data.json")
   
     let date = Date.now()
