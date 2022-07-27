@@ -1,9 +1,14 @@
 let esir = require("./libs/sallesESIR.js")
 
+const axios = require('axios');
+
+async function fetch(url){
+  const resp = await axios.get(url);
+  return JSON.parse(resp.data);
+};
+
 module.exports = async function (req, res) {
-    let request = await fetch("https://cdn.jsdelivr.net/gh/AquaBx/salles_esir@latest/salles/data.json")
-    let all_salles = await request.json()
-  
+    let all_salles = await fetch("https://cdn.jsdelivr.net/gh/AquaBx/salles_esir@latest/salles/data.json")
   
     let date = Date.now()
     if (req.query.time){
