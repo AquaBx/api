@@ -1,4 +1,4 @@
-import  "https://raw.githubusercontent.com/AquaBx/salles_esir/main/module_salles.js";
+let esir = require("./libs/sallesESIR.js")
 
 module.exports = async function (req, res) {
   let date = Date.now()
@@ -7,7 +7,8 @@ module.exports = async function (req, res) {
   }
 
   try {
-    let salles = JSON.parse(req.query.salles)
+    let req = await fetch("https://cdn.jsdelivr.net/gh/AquaBx/salles_esir@latest/salles/data.json")
+    let salles = await req.json()
     let resp = {}
     if (req.query.type == "events"){
         for (let key of salles){
