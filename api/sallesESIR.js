@@ -21,20 +21,14 @@ module.exports = async function (req, res) {
     
     if (req.query.type == "events"){
         for (let salle of salles){
-            console.log(1)
-            console.log(salle)
-            console.log(all_salles)
-            let key = all_salles[salle]
-            console.log(key)
-          
+            let key = all_salles[salle]          
             let result = await esir.salleEvents(key,date);
             resp[key] = result
         }
     }
     else if (req.query.type == "libres"){
         for (let salle of salles){
-            let key = all_salles[salle]
-            
+            let key = all_salles[salle]            
             let result = await esir.salleLibres(key,date);
             resp[key] = result
         }
