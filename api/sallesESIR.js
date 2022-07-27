@@ -19,6 +19,9 @@ module.exports = async function (req, res) {
     
     let salles = JSON.parse(req.query.salles)
     let resp = {}
+    console.log(req.query.type)
+    console.log(req.query.salles)
+    console.log(salles)
     if (req.query.type == "events"){
         for (let salle of salles){
             let key = all_salles[salle]
@@ -41,6 +44,6 @@ module.exports = async function (req, res) {
     return res.status(200).json(resp);
   } 
   catch (error) {
-    return res.status(200).json(error);
+    return res.status(500).json(error);
   }
 };
