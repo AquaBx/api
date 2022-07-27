@@ -4,7 +4,7 @@ const axios = require('axios');
 
 async function request(url){
   let resp = await axios.get(url);
-  return resp.data.json;
+  return resp.data;
 };
 
 module.exports = async function (req, res) {
@@ -24,7 +24,7 @@ module.exports = async function (req, res) {
             console.log(1)
             console.log(salle)
             console.log(all_salles)
-            let key = all_salles.salle
+            let key = all_salles[salle]
             console.log(key)
           
             let result = await esir.salleEvents(key,date);
