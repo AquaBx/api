@@ -23,7 +23,8 @@ module.exports = async function (req, res) {
         for (let salle of salles){
             console.log(1)
             console.log(salle)
-            let key = all_salles[salle]
+            console.log(all_salles)
+            let key = all_salles.salle
             console.log(key)
           
             let result = await esir.salleEvents(key,date);
