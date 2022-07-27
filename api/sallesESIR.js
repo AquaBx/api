@@ -1,4 +1,4 @@
-let esir = require("https://raw.githubusercontent.com/AquaBx/salles_esir/main/module_salles.js");
+import  "https://raw.githubusercontent.com/AquaBx/salles_esir/main/module_salles.js";
 
 module.exports = async function (req, res) {
   let date = Date.now()
