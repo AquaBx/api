@@ -1,14 +1,14 @@
 let esir = require("./libs/sallesESIR.js")
 
 module.exports = async function (req, res) {
-  let req = await fetch("https://cdn.jsdelivr.net/gh/AquaBx/salles_esir@latest/salles/data.json")
-  let all_salles = await req.json()
+    let request = await fetch("https://cdn.jsdelivr.net/gh/AquaBx/salles_esir@latest/salles/data.json")
+    let all_salles = await request.json()
   
   
-  let date = Date.now()
-  if (req.query.time){
-      date = req.query.datimete
-  }
+    let date = Date.now()
+    if (req.query.time){
+        date = req.query.time
+    }
 
   try {
     
